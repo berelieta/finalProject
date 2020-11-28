@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<title>Cancer Predictor</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.3/dist/leaflet.css"
+    integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ=="
+    crossorigin=""/>
+<script src="https://unpkg.com/leaflet@1.3.3/dist/leaflet.js"
+    integrity="sha512-tAGcCfR4Sc5ZP5ZoVz0quoZDYX5aCtEm/eu1KhSLj2c9eFrylXZknQYmxUssFaVJKvvc0dJQixhGjG2yXWiV9Q=="
+    crossorigin=""></script>
+    <!-- d3 JavaScript -->
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.1/js/tempusdominus-bootstrap-4.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.1/css/tempusdominus-bootstrap-4.min.css" />
+<style>
+body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
+.myLink {display: none}
+.city {display:none}
+</style>
+<body class="w3-light-grey">
+
+<!-- Navigation Bar -->
+<div class="w3-bar w3-white w3-border-bottom w3-xlarge">
+  <a href="#" class="w3-bar-item w3-button w3-text-pink w3-hover-pink"><b><i class="fa fa-venus w3-margin-right"></i>Breast Cancer Predictor</b></a>
+</div>
+
+<!-- Header -->
+<header class="w3-display-container w3-content w3-hide-small" style="max-width:1500px">
+  <img class="w3-image" src="breastc.jpeg" alt="Divvy" width="1500" height="350">
+  <div class="w3-display-middle" style="width:50%">
+   
+
+    <!-- Tabs -->
+    <div class="w3-container w3-transparent w3-padding-2">
+      <h3>Welcome to the Breast Cancer Predictor!</h3>
+      <P>Please input your information below:</P>
+      <P>Please enter your age, bsdbdhjdbjhdbfjhdfbshdfbdsjhfbsdjhfbjhbjhsdbfsjhdbfhjsdbfjhsdbcsdjhbcjhdsbcsjdhcbdjhbcsdjhbcdsjhcbdsj and the predictor will dsbjhdsbjhscb</P>
+      
+    <!-- </div> -->
+    <form action="/action_page.php">
+      <label for="birad">Choose a Bi-Rad Option:</label>
+      <select id="birad" name="birad">
+        <option value="Almost entirely fatty">Almost entirely fatty</option>
+        <option value="Extremely dense">Extremely dense</option>
+        <option value="Heterogeneously dense">Heterogeneously dense</option>
+        <option value="Scattered fibroglandular densities">Scattered fibroglandular densities</option>
+      </select>
+    </form>
+        <div class="w3-quarter">
+          <form action="/action_page.php">
+            <label for="HT">Hormone Therapy:</label>
+            <select id="HT" name="HT">
+              <option value="Yes">Yes</option>
+              <option value="No">No</option>
+            </select>
+          </form>
+        </div>
+        <div class="w3-quarter">
+          <form action="/action_page.php">
+            <label for="FH">Family History:</label>
+            <select id="FH" name="FH">
+              <option value="Yes">Yes</option>
+              <option value="No">No</option>
+            </select>
+          </form>
+        </div>
+        <div class="w3-quarter">
+          <form action="/action_page.php">
+            <label for="MG">Mammogram:</label>
+            <select id="MG" name="MG">
+              <option value="Yes">Yes</option>
+              <option value="No">No</option>
+            </select>
+          </form>
+        </div>
+        <div class="w3-quarter">
+          <form action="/action_page.php">
+            <label for="BB">Breast Biopsy:</label>
+            <select id="BB" name="BB">
+              <option value="Yes">Yes</option>
+              <option value="No">No</option>
+            </select>
+          </form>
+        </div>
+      </div>
+      <p><button onclick="" class="w3-button w3-black">Predict</button>
+    </div>
+    
+  
+</body>
+</html> 
