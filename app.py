@@ -1,7 +1,7 @@
 #import psycopg2 as pg
 #import pandas.io.sql as psql
 import pandas as pd
-from flask import Flask, jsonify#, request
+from flask import Flask, jsonify, request, render_template
 from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
 
@@ -25,23 +25,26 @@ class BreastCancer(db.Model):
     cancer_diagnosis = db.Column(db.Boolean)
     age = db.Column(db.Integer)
 
-#@app.route("/data")
 @app.route("/")
-def data():
-    birads = "Heterogeneously dense"
-    hormone = "Yes"
-    fam_history = "No"
-    mammogram = "Yes"
-    biopsy = "No"
-    agee = 62
+def index():
+    return render_template("breast_cancer.html")
+
+@app.route("/data/<age>/<birads>/<HT>/<FH>/<MG>/<BB>")
+def data(age,birads,HT,FH,MG,BB):
 
     #request.json
-    results = BreastCancer.query\
-        .with_entities(BreastCancer.patients_birads,BreastCancer.hormone_therapy,BreastCancer.family_history,BreastCancer.comparison_mammogram,BreastCancer.breast_biopsy,BreastCancer.cancer_diagnosis,BreastCancer.age)\
-        .filter(BreastCancer.patients_birads==birads,BreastCancer.hormone_therapy==hormone,BreastCancer.family_history==fam_history,BreastCancer.comparison_mammogram==mammogram,BreastCancer.breast_biopsy==biopsy,BreastCancer.age==agee)\
-        .all()
-    results = pd.DataFrame(results)
-    return (results.to_json(orient="records"))
+    # results = BreastCancer.query\
+    #     .with_entities(BreastCancer.patients_birads,BreastCancer.hormone_therapy,BreastCancer.family_history,BreastCancer.comparison_mammogram,BreastCancer.breast_biopsy,BreastCancer.cancer_diagnosis,BreastCancer.age)\
+    #     .filter(BreastCancer.patients_birads==birads)\
+    #     .filter(BreastCancer.hormone_therapy==HT)\
+    #     .filter(BreastCancer.family_history==FH)\
+    #     .filter(BreastCancer.comparison_mammogram==MG)\
+    #     .filter(BreastCancer.breast_biopsy==BB)\
+    #     .filter(BreastCancer.age==age)\
+    #     .all()
+    # results = pd.DataFrame(results)
+    # return (results.to_json(orient="records"))
+    return "hola"
 
 
 if __name__ == '__main__':
