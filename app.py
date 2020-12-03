@@ -4,6 +4,7 @@ import pandas as pd
 from flask import Flask, jsonify, request, render_template
 from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
+import pickle
 
 #connection = pg.connect( "host=bootcampml.postgres.database.azure.com port=5432 dbname=postgres user=bootcamp@bootcampml password=P@ssword123 sslmode=require")
 #dataframeWF = psql.read_sql("SELECT * from breast_cancer", connection)
@@ -29,23 +30,15 @@ class BreastCancer(db.Model):
 def index():
     return render_template("breast_cancer.html")
 
-@app.route("/data/<age>/<birads>/<HT>/<FH>/<MG>/<BB>")
-def data(age,birads,HT,FH,MG,BB):
-
-    #request.json
-    # results = BreastCancer.query\
-    #     .with_entities(BreastCancer.patients_birads,BreastCancer.hormone_therapy,BreastCancer.family_history,BreastCancer.comparison_mammogram,BreastCancer.breast_biopsy,BreastCancer.cancer_diagnosis,BreastCancer.age)\
-    #     .filter(BreastCancer.patients_birads==birads)\
-    #     .filter(BreastCancer.hormone_therapy==HT)\
-    #     .filter(BreastCancer.family_history==FH)\
-    #     .filter(BreastCancer.comparison_mammogram==MG)\
-    #     .filter(BreastCancer.breast_biopsy==BB)\
-    #     .filter(BreastCancer.age==age)\
-    #     .all()
-    # results = pd.DataFrame(results)
-    # return (results.to_json(orient="records"))
-    return "hola"
-
+@app.route("/data/<age>/<birads>/<biopsy>/<mammogram>/<family>/<hormone>")
+def data(age,birads,biopsy,mammogram,family,hormone):
+    loaded_model = pickle.load(open("model.sav", 'rb'))
+    predictors = [age,birads,biopsy,mammogram,family,hormone]
+    result = loaded_model.predict([predictors])
+    cancer = False
+    if result[0] == 1:
+        cancer=True
+    return str(cancer)
 
 if __name__ == '__main__':
     app.run(host= '0.0.0.0')
