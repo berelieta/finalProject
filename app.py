@@ -54,7 +54,7 @@ def data(age,birads,biopsy,mammogram,family,hormone):
     cancer = False
     if result[0] == 1:
         cancer=True
-    return str(cancer)
+    return jsonify({"result":cancer})
 
 if __name__ == '__main__':
     app.run(host= '0.0.0.0')
