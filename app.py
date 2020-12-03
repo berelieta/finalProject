@@ -9,6 +9,7 @@ import pickle
 connection = pg.connect( "host=bootcampml.postgres.database.azure.com port=5432 dbname=postgres user=bootcamp@bootcampml password=P@ssword123 sslmode=require")
 #dataframeWF = psql.read_sql("SELECT * from breast_cancer", connection)
 dataframe = psql.read_sql("SELECT CASE WHEN age <= 69 THEN '60-69' WHEN (age >= 70 AND age <= 79)  THEN '70-79' WHEN (age >= 80 AND age <= 89) THEN '80-89' WHEN age >= 90  THEN '90+' ELSE ' '  END AS age_range, COUNT(*) AS count_range FROM breast_cancer WHERE cancer_diagnosis = true GROUP BY CASE WHEN age <= 69 THEN '60-69' WHEN (age >= 70 AND age <= 79)  THEN '70-79' WHEN (age >= 80 AND age <= 89) THEN '80-89'  WHEN age >= 90  THEN '90+' ELSE ' '  END;", connection)
+databirads = psql.read_sql("SELECT patients_birads AS birads, count(patients_birads) AS num_patients FROM breast_cancer WHERE cancer_diagnosis = true GROUP BY patients_birads ORDER BY patients_birads;", connection)
 
 
 app = Flask(__name__)
@@ -36,6 +37,13 @@ def welcome():
     """List all available api routes."""
     return (
         dataframe.to_json(orient="table")
+    )
+
+@app.route("/birads")
+def birads():
+    """List all available api routes."""
+    return (
+        databirads.to_json(orient="table")
     )
 
 @app.route("/data/<age>/<birads>/<biopsy>/<mammogram>/<family>/<hormone>")
